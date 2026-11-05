@@ -1,0 +1,82 @@
+@use "./variables.scss" as *;
+
+// Teacher.Shokh brand layer (palette lives in quartz.config.yaml)
+:root {
+  --tangerine: #ff8a3d;
+  --on-tangerine: #012b1d;
+}
+
+body {
+  font-optical-sizing: auto;
+}
+
+// Forest theme: soft jungle glow, like the main site
+:root[saved-theme="light"] body {
+  background:
+    radial-gradient(60% 45% at 92% -8%, rgba(1, 179, 108, 0.22), transparent 70%) no-repeat,
+    var(--light);
+  background-size: 100% 1400px;
+}
+
+// Wordmark: Teacher.Shokh
+.page-title {
+  font-size: 1.6rem;
+  white-space: nowrap;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin: 0;
+
+  a { color: var(--dark); text-decoration: none; background: none; }
+  em { font-weight: 400; color: var(--secondary); }
+  .ts-dot { color: var(--tangerine); margin: 0 0.04em 0 0.01em; }
+}
+.ts-sub {
+  display: block;
+  margin-top: 0.55rem;
+  font-family: var(--codeFont);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray);
+
+  a { color: var(--gray); background: none; text-decoration: none; }
+  a:hover { color: var(--tangerine); }
+}
+
+// Headings and reading rhythm
+h1, h2, h3, h4 { letter-spacing: -0.015em; font-weight: 500; }
+article { font-size: 1.08rem; line-height: 1.7; }
+.article-title { font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.08; font-weight: 400; }
+
+// Internal links: jungle with a faint wash; tangerine on hover (clickable = tangerine)
+a.internal {
+  background-color: var(--highlight);
+  transition: color 0.15s, background-color 0.15s;
+  &:hover { color: var(--on-tangerine); background-color: var(--tangerine); }
+}
+a.external:hover { color: var(--tangerine); }
+
+blockquote {
+  border-left: 3px solid var(--secondary);
+  margin-left: 0;
+  font-style: italic;
+}
+
+// Small labels in mono, like the blog
+.content-meta, .breadcrumb-container, .tags, .backlinks > h3, .graph > h3, .toc > button h3, .explorer .folder-title {
+  font-family: var(--codeFont);
+}
+.graph > h3, .backlinks > h3, .toc h3 { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
+
+// Graph panel framing
+.graph .graph-outer { border-color: var(--lightgray); border-radius: 4px; }
+
+// Mobile: keep the closed explorer drawer fully off-screen, and keep the header compact
+@media all and (max-width: 800px) {
+  // the closed drawer is hidden, but open folders inside it re-show themselves; keep them hidden too
+  .explorer.collapsed .explorer-content * { visibility: hidden !important; }
+  .page-title { font-size: 1.3rem; }
+  .ts-sub { display: none; }
+}

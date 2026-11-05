@@ -1,0 +1,30 @@
+{
+  "vault": "~/Downloads/TeacherShokh_s Vault",
+  "home": "01 Teaching/ELT Second Brain/ELT Second Brain - Home.md",
+  "include": [
+    "01 Teaching/ELT Second Brain"
+  ],
+  "exclude": [
+    "01 Teaching/ELT Second Brain/04 Index"
+  ],
+  "stripSections": [
+    "Apply in my context"
+  ],
+  "stripLinePrefixes": [
+    "**Why it matters for me:**",
+    "**Value for me:**"
+  ],
+  "privateTerms": [
+    "Tanga",
+    "RS Insight",
+    "RS Learning System",
+    "Coursebook-to-Lesson",
+    "IELTS Pro Gang",
+    "Rahimov",
+    "homeschool",
+    "Axloqiy"
+  ],
+  "renameFrontmatter": {
+    "published": "source_date"
+  }
+}
