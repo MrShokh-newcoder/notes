@@ -1,29 +1,25 @@
 {
   "vault": "~/Downloads/TeacherShokh_s Vault",
-  "home": "01 Teaching/ELT Second Brain/ELT Second Brain - Home.md",
+  "home": "00 Home.md",
+  "homeTitle": "Notes",
   "include": [
-    "01 Teaching/ELT Second Brain"
+    "01 Teaching",
+    "02 Writing & Content",
+    "03 Books & Highlights",
+    "04 Business & Marketing",
+    "05 Islam",
+    "06 Personal Growth & Reflections",
+    "07 Clippings & Tweets"
   ],
   "exclude": [
-    "01 Teaching/ELT Second Brain/04 Index"
+    "99 Review",
+    "98 Attachments"
   ],
-  "stripSections": [
-    "Apply in my context"
-  ],
-  "stripLinePrefixes": [
-    "**Why it matters for me:**",
-    "**Value for me:**"
-  ],
-  "privateTerms": [
-    "Tanga",
-    "RS Insight",
-    "RS Learning System",
-    "Coursebook-to-Lesson",
-    "IELTS Pro Gang",
-    "Rahimov",
-    "homeschool",
-    "Axloqiy"
-  ],
+  "excludeNamePattern": "^Template - ",
+  "keepFolderPaths": true,
+  "stripSections": [],
+  "stripLinePrefixes": [],
+  "privateTerms": [],
   "renameFrontmatter": {
     "published": "source_date"
   }

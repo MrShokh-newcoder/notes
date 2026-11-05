@@ -12,7 +12,7 @@ const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
 const cfg = JSON.parse(fs.readFileSync(path.join(ROOT, 'publish.config.json'), 'utf8'));
 const expand = (p) => p.replace(/^~(?=$|\/)/, os.homedir());
 const VAULT = path.resolve(expand(process.argv[2] || process.env.VAULT || cfg.vault));
-const OUT = path.join(ROOT, 'content');
+const OUT = process.env.OUT ? path.resolve(process.env.OUT) : path.join(ROOT, 'content');
 const IMG = /\.(png|jpe?g|gif|webp|svg|avif)$/i;
 
 if (!fs.existsSync(VAULT)) { console.error(`Vault not found: ${VAULT}`); process.exit(1); }
@@ -46,6 +46,7 @@ for (const f of files.filter((f) => f.endsWith('.md'))) {
   const flag = fmFlag(fm, 'publish');
   if (flag === 'false' || fmFlag(fm, 'draft') === 'true') continue;
   const inFolder = cfg.include.some((d) => under(r, d)) && !cfg.exclude.some((d) => under(r, d));
+  if (cfg.excludeNamePattern && new RegExp(cfg.excludeNamePattern).test(path.basename(f)) && flag !== 'true') continue;
   if (inFolder || flag === 'true' || r === cfg.home) notes.push(f);
 }
 const published = new Set(notes.map((f) => path.basename(f, '.md')));
@@ -53,8 +54,8 @@ const homeName = path.basename(cfg.home, '.md');
 const imagesByName = new Map(files.filter((f) => IMG.test(f)).map((f) => [path.basename(f), f]));
 
 // ---- transforms -----------------------------------------------------------
-const terms = cfg.privateTerms.map((t) => t.toLowerCase());
-const hasTerm = (s) => terms.some((t) => s.toLowerCase().includes(t));
+const terms = (cfg.privateTerms || []).map((t) => t.toLowerCase());
+const hasTerm = (s) => terms.length > 0 && terms.some((t) => s.toLowerCase().includes(t));
 const stats = { sections: 0, lines: 0, sentences: 0, unlinked: 0, images: 0 };
 
 function stripSections(body) {
@@ -66,7 +67,7 @@ function stripSections(body) {
     if (h) {
       const level = h[1].length;
       if (skipLevel && level <= skipLevel) skipLevel = 0;
-      if (!skipLevel && (cfg.stripSections.some((s) => h[2].includes(s)) || hasTerm(h[2]))) {
+      if (!skipLevel && ((cfg.stripSections || []).some((s) => h[2].includes(s)) || hasTerm(h[2]))) {
         skipLevel = level; stats.sections++; continue;
       }
     }
@@ -80,7 +81,7 @@ function stripPrivate(body) {
   return body.split('\n').flatMap((line) => {
     if (/^\s*```/.test(line)) inCode = !inCode;
     if (inCode) return [line];
-    if (cfg.stripLinePrefixes.some((p) => line.trim().startsWith(p))) { stats.lines++; return []; }
+    if ((cfg.stripLinePrefixes || []).some((p) => line.trim().startsWith(p))) { stats.lines++; return []; }
     if (!hasTerm(line)) return [line];
     if (/^\s*([-*+]|\d+\.|\|)/.test(line)) { stats.lines++; return []; }   // list item or table row
     const kept = line.split(/(?<=[.!?])\s+/).filter((s) => { const bad = hasTerm(s); if (bad) stats.sentences++; return !bad; });
@@ -99,7 +100,7 @@ function fixLinks(body) {
   // wikilinks to notes that aren't published become plain text
   return body.replace(/(?<!!)\[\[([^\]|#]+)(#[^\]|]*)?(?:\|([^\]]+))?\]\]/g, (m, target, hash = '', alias) => {
     const name = path.basename(target.trim());
-    if (name === homeName) return `[[index|${alias || 'ELT Second Brain'}]]`;
+    if (name === homeName) return `[[index|${alias || cfg.homeTitle || 'Home'}]]`;
     if (published.has(name)) return m;
     stats.unlinked++; return alias || name;
   });
@@ -130,11 +131,11 @@ for (const f of notes) {
   let dest;
   if (r === cfg.home) {
     dest = 'index.md';
-    fm = `title: ELT Second Brain\n${fm}`;
+    fm = `title: ${JSON.stringify(cfg.homeTitle || 'Home')}\n${fm}`;
     body = body.replace(/^# .*\n+/, '');
   } else {
     const base = cfg.include.find((d) => under(r, d));
-    dest = base ? path.relative(base, r) : r;
+    dest = base && !cfg.keepFolderPaths ? path.relative(base, r) : r;
   }
   const target = path.join(OUT, dest);
   fs.mkdirSync(path.dirname(target), { recursive: true });

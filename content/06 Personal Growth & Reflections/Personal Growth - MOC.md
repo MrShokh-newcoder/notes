@@ -1,0 +1,67 @@
+---
+type: moc
+tags:
+  - moc
+---
+## Reflections & advice
+- [[Advice - Mirafzal aka]]
+- [[Aziz Rahimov - 21-asrda kerakli ko'nikmalar]]
+- [[Aziz Rahimov - Notes]]
+- [[Everyday questions]]
+- [[General Notes]]
+- [[Ikrom Sharif - Vaqt qadri]]
+- [[Key Notes]]
+- [[Umar Hayyom - ruboiylar]]
+- [[Work, work, work...]]
+- [[Year-End insights (2022)]]
+
+## Productivity & self-development books
+- [[100 Quotes That Will Change Your Life - Library Mindset]]
+- [[101 Essays That Will Change the Way You Think - Brianna Wiest]]
+- [[Atomic Habits - James Clear (notes)]]
+- [[Die Empty - Todd Henry]]
+- [[Eat That Frog - Brian Tracy (notes)]]
+- [[Ego Is the Enemy - Ryan Holiday]]
+- [[Essentialism - Greg McKeown]]
+- [[Getting Things Done - David Allen]]
+- [[Hell Yeah or No - Derek Sivers]]
+- [[How to Begin - Michael Bungay Stanier]]
+- [[How to Live - Derek Sivers]]
+- [[Ikigai & Kaizen - Anthony Raymond]]
+- [[Indistractable - Nir Eyal]]
+- [[Letters from a Stoic - Seneca]]
+- [[Master Your Time - Thibaut Meurisse]]
+- [[Never Finished - David Goggins]]
+- [[Skip the Line - James Altucher]]
+- [[The Almanack of Naval Ravikant - Eric Jorgenson]]
+- [[The Art of Being Alone - Renuka Gavrani]]
+- [[The Art of Laziness - Library Mindset]]
+- [[The Art of Saying No]]
+- [[The Checklist Manifesto - Atul Gawande]]
+- [[The Daily Laws - Robert Greene]]
+- [[The Good Enough Job - Simone Stolzoff]]
+- [[Tools of Titans - Tim Ferriss]]
+- [[Who Moved My Cheese - Spencer Johnson (notes)]]
+
+## Psychology & thinking books
+- [[Chatter - Ethan Kross]]
+- [[Influence - Robert Cialdini]]
+- [[Mistakes Were Made (but Not by Me) - Tavris & Aronson]]
+- [[Purposeful Curiosity - Constantine Andriopoulos]]
+- [[Stop Overthinking - Nick Trenton]]
+- [[The Great Mental Models - Shane Parrish]]
+- [[The Power of Moments - Chip & Dan Heath]]
+- [[The Willpower Instinct - Kelly McGonigal]]
+- [[Why We Sleep - Matthew Walker]]
+- [[You Are Not So Smart - David McRaney]]
+
+## Leadership & communication books
+- [[Difficult Conversations - Stone, Patton & Heen]]
+- [[Do More Great Work - Michael Bungay Stanier]]
+- [[Getting to Yes - Fisher, Ury & Patton]]
+- [[How to Talk to Anyone - Paul Newcomer]]
+- [[Never Eat Alone - Keith Ferrazzi]]
+- [[Radical Candor - Kim Scott]]
+- [[The Advice Trap - Michael Bungay Stanier]]
+- [[The Coaching Habit - Michael Bungay Stanier]]
+- [[The Making of a Manager - Julie Zhuo]]
